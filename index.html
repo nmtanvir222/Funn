@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বিশেষ প্রশ্ন ✨</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 320px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.4rem;
+            margin-bottom: 50px; /* লেখার নিচে জায়গা বাড়ানো হয়েছে */
+        }
+
+        .btn-wrapper {
+            position: relative;
+            height: 150px; /* বাটনগুলোর জন্য পর্যাপ্ত জায়গা */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px; /* দুই বাটনের মাঝে গ্যাপ */
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #28a745;
+            color: white;
+            width: 150px;
+        }
+
+        /* "না" বাটনটি শুরুতে একটু নিচে এবং আলাদা রাখা হয়েছে */
+        #noBtn {
+            background-color: #dc3545;
+            color: white;
+            width: 100px;
+            position: absolute;
+            top: 80px; /* এটি "অবশ্যই" বাটনের বেশ নিচে থাকবে */
+            z-index: 100;
+        }
+
+        #message {
+            display: none;
+            font-size: 1.6rem;
+            color: #ff1493;
+            font-weight: bold;
+            animation: bounce 0.5s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="quesText">তুমি কি আমার সাথে ঘুরতে যাবে? 🚗✨</h1>
+        
+        <div class="btn-wrapper">
+            <button id="yesBtn" onclick="done()">অবশ্যই!</button>
+            
+            <button id="noBtn" onmouseover="move()" ontouchstart="move()">না</button>
+        </div>
+
+        <div id="message">চলো তাহলে! 😍🎉</div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const quesText = document.getElementById('quesText');
+        const message = document.getElementById('message');
+        const yesBtn = document.getElementById('yesBtn');
+
+        function move() {
+            // স্ক্রিনের মাপ অনুযায়ী বাটনটি র‍্যান্ডম জায়গায় সরবে
+            // ২0 পিক্সেল প্যাডিং রাখা হয়েছে যাতে একদম কোণায় না যায়
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function done() {
+            quesText.style.display = 'none';
+            yesBtn.style.display = 'none';
+            noBtn.style.display = 'none';
+            message.style.display = 'block';
+            document.body.style.background = "#fff0f5";
+        }
+    </script>
+</body>
+</html>
